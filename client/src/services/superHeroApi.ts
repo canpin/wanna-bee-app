@@ -19,7 +19,7 @@ export const getSuperPowers = async (): Promise<ISuperPower[]> => {
 }
 
 export const addSuperHero = async (newSuperHero: ISuperHero): Promise<string> => {
-  const response: AxiosResponse<Response> = await axios.post(baseUrl + "/add", newSuperHero, { headers: { 'Content-Type': 'application/json' }});
+  const response: AxiosResponse<string> = await axios.post(baseUrl + "/add", newSuperHero, { headers: { 'Content-Type': 'application/json' }});
   console.log(response)
-  return response.data.message
+  return response.data
 }

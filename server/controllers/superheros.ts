@@ -14,14 +14,14 @@ export const getSuperPowers = async (req: Request, res: Response): Promise<void>
 export const addSuperHero =async (req: Request, res: Response): Promise<void> => {
   const newSuperHero = req.body;
   let status: number = 200;
-  let message: string = `You can be ${newSuperHero.name}!`
+  let message: string = `You can be ${newSuperHero.name}!`;
   if (!newSuperHero.name) {
     status = 400;
-    message = "Super hero needs a name!"
+    message = "Super hero needs a name!";
   }
   else if (!newSuperHero.superPower?.ability) {
     status = 400;
-    message = "Super hero needs a super power!"
+    message = "Super hero needs a super power!";
   }
-  res.status(status).json({ message })
+  res.status(status).send(message);
 }

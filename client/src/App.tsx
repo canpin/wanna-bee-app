@@ -1,24 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import AddSuperHero from './components/AddSuperHero';
 import './App.css';
+import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Box>
+        <Typography variant='h2'>Who would You like to BEE</Typography>
+        <AddSuperHero />
+      </Box>
     </div>
   );
 }

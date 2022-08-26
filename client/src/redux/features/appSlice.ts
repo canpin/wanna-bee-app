@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import ISuperPower from "../../../../API/ISuperPower";
 import type { RootState } from '../store'
 
 interface AppState {
-  loading: boolean
+  loading: boolean;
+  superpowers: ISuperPower[];
 };
 
 const initialState: AppState = {
-  loading: false
+  loading: true,
+  superpowers: new Array<ISuperPower>()
 };
 
 export const appSlice = createSlice({
@@ -15,11 +18,14 @@ export const appSlice = createSlice({
   reducers: {
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
+    },
+    setSuperPowers: (state, action: PayloadAction<ISuperPower[]>) => {
+      state.superpowers = action.payload;
     }
   }
 });
 
-export const { setLoading } = appSlice.actions;
+export const { setLoading, setSuperPowers } = appSlice.actions;
 
 export const isLoading = (state: RootState) => state.app.loading;
 

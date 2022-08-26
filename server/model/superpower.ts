@@ -1,3 +1,4 @@
+// TODO remove this
 export default class SuperPower {
   private ability: string;
 

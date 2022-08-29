@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Alert, AlertColor, Autocomplete, Button, Paper, Snackbar, Stack, TextField } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import ISuperHero from "../../../API/ISuperHero";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { setLoading } from '../redux/features/appSlice';
@@ -24,9 +25,7 @@ const showMessage = (message: string, severity: AlertColor, onClose: () => void)
   );
 }
 
-type Props = {
-  //addTodo: (superHero: ISuperHero) => void
-};
+type Props = {};
 
 const AddSuperHero: React.FC<Props> = () => {
   const [name, setName] = useState<string>("");
@@ -94,14 +93,15 @@ const AddSuperHero: React.FC<Props> = () => {
             }}
             renderInput={(params) => <TextField {...params} label="Super Power" />}
           />
-          <Button
+          <LoadingButton
             variant="contained"
             size="medium"
-            disabled={loading}
+            loading={loading}
+            loadingPosition="center"
             onClick={() => saveHero()}
           >
             BEE a Hero
-          </Button>
+          </LoadingButton>
         </Stack>
       </Paper>
     </React.Fragment>

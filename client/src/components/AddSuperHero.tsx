@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Alert, AlertColor, Autocomplete, Button, Paper, Snackbar, Stack, TextField } from "@mui/material";
+import { Alert, AlertColor, Autocomplete, Paper, Snackbar, Stack, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import ISuperHero from "../../../API/ISuperHero";
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { setLoading } from '../redux/features/appSlice';
+import { setLoading } from '../appSlice';
 import { addSuperHero } from "../services/superHeroApi"
 import ISuperPower from "../../../API/ISuperPower";
 import { AxiosError } from "axios";
@@ -14,7 +14,6 @@ const showMessage = (message: string, severity: AlertColor, onClose: () => void)
   };
   return (
     <Snackbar
-      //open={errorMessage !== undefined && errorMessage !== null}
       open={shouldDisplayMessage(message)}
       autoHideDuration={3000}
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}

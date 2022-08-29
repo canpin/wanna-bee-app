@@ -6,7 +6,7 @@ import { Box } from '@mui/system';
 import { getSuperPowers } from './services/superHeroApi'
 import ISuperPower from '../../API/ISuperPower';
 import { useAppDispatch } from './hooks';
-import { setLoading, setSuperPowers } from './redux/features/appSlice';
+import { setLoading, setSuperPowers } from './appSlice';
 
 function App() {
   const dispatch = useAppDispatch();

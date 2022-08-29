@@ -4,15 +4,6 @@ import ISuperPower from "../../../API/ISuperPower";
 
 const baseUrl: string = "http://localhost:8080/api/superheros";
 
-interface Response {
-  message: string;
-  status: string;
-}
-
-type SuperPowersResponse = Response & {
-  superpowers: ISuperPower[];
-}
-
 export const getSuperPowers = async (): Promise<ISuperPower[]> => {
   const response: AxiosResponse<ISuperPower[]> = await axios.get(baseUrl + "/getSuperPowers");
   return response.data;
@@ -20,6 +11,5 @@ export const getSuperPowers = async (): Promise<ISuperPower[]> => {
 
 export const addSuperHero = async (newSuperHero: ISuperHero): Promise<string> => {
   const response: AxiosResponse<string> = await axios.post(baseUrl + "/add", newSuperHero, { headers: { 'Content-Type': 'application/json' }});
-  console.log(response)
   return response.data
 }

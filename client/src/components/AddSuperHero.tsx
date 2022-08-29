@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Autocomplete, Button, Paper, Snackbar, Stack, TextField } from "@mui/material";
+import { Alert, AlertColor, Autocomplete, Button, Paper, Snackbar, Stack, TextField } from "@mui/material";
 import ISuperHero from "../../../API/ISuperHero";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { setLoading } from '../redux/features/appSlice';
@@ -7,7 +7,22 @@ import { addSuperHero } from "../services/superHeroApi"
 import ISuperPower from "../../../API/ISuperPower";
 import { AxiosError } from "axios";
 
-//import { useDispatch } from "react-redux";
+const showMessage = (message: string, severity: AlertColor, onClose: () => void) => {
+  const shouldDisplayMessage = (message: string): boolean => {
+    return message ? true : false;
+  };
+  return (
+    <Snackbar
+      //open={errorMessage !== undefined && errorMessage !== null}
+      open={shouldDisplayMessage(message)}
+      autoHideDuration={3000}
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      onClose={onClose}
+    >
+      <Alert elevation={6} variant="filled" severity={severity} onClose={onClose}>{message}</Alert>
+    </Snackbar>
+  );
+}
 
 type Props = {
   //addTodo: (superHero: ISuperHero) => void
@@ -16,7 +31,8 @@ type Props = {
 const AddSuperHero: React.FC<Props> = () => {
   const [name, setName] = useState<string>("");
   const [superPower, setSuperPower] = useState<ISuperPower | null>();
-  const [errorMessage, setErrorMessage] = useState<string | null>();
+  const [infoMessage, setInfoMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const loading = useAppSelector((state) => state.app.loading);
   const superpowers = useAppSelector((state) => state.app.superpowers);
   const dispatch = useAppDispatch();
@@ -29,7 +45,9 @@ const AddSuperHero: React.FC<Props> = () => {
     };
     addSuperHero(superhero)
       .then((message: string) => {
-        console.log(message);
+        setInfoMessage(message);
+        setName("");
+        setSuperPower(null);
       })
       .catch((error: AxiosError) => {
         if (error.response?.data) {
@@ -43,19 +61,18 @@ const AddSuperHero: React.FC<Props> = () => {
       });
   };
 
+  const clearError = (): void => {
+    setErrorMessage("");
+  };
+
+  const clearInfo = (): void => {
+    setInfoMessage("");
+  };
+
   return (
     <React.Fragment>
-      <Snackbar
-        open={errorMessage !== undefined && errorMessage !== null}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
-          severity="error"
-          onClose={() => setErrorMessage(null)}
-        >
-          {errorMessage}
-        </Alert>
-      </Snackbar>
+      {showMessage(errorMessage, "error", clearError)}
+      {showMessage(infoMessage, "success", clearInfo)}
       <Paper className="form">
         <Stack direction="column" spacing={2} >
           <TextField

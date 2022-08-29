@@ -8,7 +8,7 @@ npm run build
 npm run start
 ```
 
-In client foler, run:
+In client folder, run:
 ```
 npm install
 npm start

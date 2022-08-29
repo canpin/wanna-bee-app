@@ -6,7 +6,7 @@ import { Box } from '@mui/system';
 import { getSuperPowers } from './services/superHeroApi'
 import ISuperPower from '../../API/ISuperPower';
 import { useAppDispatch } from './hooks';
-import { setLoading, setSuperPowers } from './appSlice';
+import { setLoading, setSuperPowers } from './redux/appSlice';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <Box>
-        <Typography variant='h2'>Who would You like to BEE</Typography>
+        <Typography variant='h2'>Who would you like to BEE?</Typography>
         <AddSuperHero />
       </Box>
     </div>

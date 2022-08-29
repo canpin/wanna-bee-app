@@ -7,9 +7,9 @@ const superheroNames: String[] = ["SUPERMAN"];
 export const getSuperPowers = async (req: Request, res: Response): Promise<void> => {
   const superpowers: ISuperPower[] = [{ ability: "Flying"}, { ability: "Walking through walls"}, { ability: "X-ray vision"}];
   res.status(200).json(superpowers);
-}
+};
 
-export const addSuperHero =async (req: Request, res: Response): Promise<void> => {
+export const addSuperHero = async (req: Request, res: Response): Promise<void> => {
   const newSuperHero = req.body;
   const name: string = newSuperHero.name;
 
@@ -31,4 +31,4 @@ export const addSuperHero =async (req: Request, res: Response): Promise<void> =>
     superheroNames.push(name.toUpperCase())
   }
   res.status(status).send(message);
-}
+};

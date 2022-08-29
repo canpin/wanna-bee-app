@@ -3,7 +3,7 @@ import { Alert, AlertColor, Autocomplete, Paper, Snackbar, Stack, TextField } fr
 import LoadingButton from "@mui/lab/LoadingButton";
 import ISuperHero from "../../../API/ISuperHero";
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { setLoading } from '../appSlice';
+import { setLoading } from '../redux/appSlice';
 import { addSuperHero } from "../services/superHeroApi"
 import ISuperPower from "../../../API/ISuperPower";
 import { AxiosError } from "axios";
